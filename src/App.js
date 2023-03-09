@@ -36,6 +36,12 @@ export const ACTIONS = {
              curOperand:null,
 
           }
+          if(state.curOperand == null)
+          return{
+            ...state,
+            operation:payload.operation,
+            
+          }
           return{
             ...state,
             preOperand:evaluate(state.curOperand,state.preOperand,state.operation),
@@ -67,6 +73,8 @@ export const ACTIONS = {
 
     }}
 function evaluate(pre,cur,op){
+  if (isNaN(pre)|| isNaN(cur)|| op == '')
+  return '';
  switch (op){
   case '+':
     return parseFloat(pre) + parseFloat(cur);
